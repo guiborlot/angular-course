@@ -19,7 +19,8 @@ export class DataBindingComponent implements OnInit {
     return true;
   }
 
-  constructor() { }
+  constructor() { 
+  }
 
   ngOnInit(): void {
   }
