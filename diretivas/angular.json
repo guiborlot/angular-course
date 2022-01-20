@@ -98,6 +98,15 @@
             ],
             "scripts": []
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
+          }
         }
       }
     }
@@ -107,5 +116,8 @@
       "style": "scss"
     }
   },
-  "defaultProject": "diretivas"
+  "defaultProject": "diretivas",
+  "cli": {
+    "defaultCollection": "@angular-eslint/schematics"
+  }
 }
