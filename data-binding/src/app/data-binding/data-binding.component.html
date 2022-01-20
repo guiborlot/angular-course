@@ -1,6 +1,6 @@
-<section class="property-binding">
+<!-- <section class="property-binding">
 
-    <!-- <article>
+    <article>
         <h3>Interpolation / Interpolação</h3>
         <p>String renderizada com Interpolação: {{ url }}</p>
         <p>Resultado de 1 + 1 é: {{ 1 + 1 }}</p>
@@ -14,9 +14,9 @@
         <img src="{{ urlImagem }}">
         <img [src]=urlImagem>
         <img bind-src=urlImagem>
-    </article> -->
+    </article>
 
-    <!-- <article>
+    <article>
         <h3>Class e Style Binding</h3>
         <div>
             Selecione uma classe
@@ -39,9 +39,9 @@
 
             <div class="alert alert-danger" role="alert" [style.display]="classe.value == 'alert-danger' ? 'block' : 'none'">Esse texto somente aparece em caso de erro.</div>
         </div>
-    </article> -->
+    </article>
 
-</section>
+</section> -->
 
 <!-- <section class="event-binding">
     <article>
@@ -72,18 +72,4 @@
     </article>
 </section> -->
 
-<section class="two-way-databinding">
-    <article>
-        <h3>Two-way data binding</h3>
-        <div>
-
-            <input type="text"
-            [value]="nome"
-            (input)="nome = $any($event.target).value"/>
-
-            <input type="text" [(ngModel)]="nome"/>
-
-            <p>Você digitou o {{ nome }}</p>
-        </div>
-    </article>
-</section>
+<app-meu-form></app-meu-form>
