@@ -1,5 +1,7 @@
 import { ValueConverter } from '@angular/compiler/src/render3/view/template';
 import { Component, OnInit } from '@angular/core';
+import { interval, Observable } from 'rxjs';
+import { map } from 'rxjs/operators'
 
 @Component({
   selector: 'app-exemplo-pipes',
@@ -37,6 +39,12 @@ export class ExemploPipesComponent implements OnInit {
       return false;
     });
   }
+
+  valorAsync = new Promise((resolve, reject) => {
+    setTimeout(() => resolve('Valor assincrono'), 2000)
+  });
+
+  valorAsync2 = interval(2000).pipe(map(valor => 'Valor assincrono 2'));
 
   constructor() { }
 
