@@ -9,6 +9,8 @@ import { SettingsService } from './settings.service';
 
 import { registerLocaleData } from '@angular/common';
 import localept from '@angular/common/locales/pt';
+import { FiltroArrayPipe } from './filtro-array.pipe';
+import { FormsModule } from '@angular/forms';
 
 registerLocaleData(localept, 'pt')
 
@@ -16,11 +18,13 @@ registerLocaleData(localept, 'pt')
   declarations: [
     AppComponent,
     ExemploPipesComponent,
-    CamelCasePipe
+    CamelCasePipe,
+    FiltroArrayPipe
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [
     // {
