@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 //import { AlunosModule } from './alunos/alunos.module';
@@ -6,6 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 //import { CursosModule } from './cursos/cursos.module';
 import { HomeComponent } from './home/home.component';
+import { AuthService } from './login/auth.service';
 import { LoginComponent } from './login/login.component';
 //import { AlunosComponent } from './alunos/alunos.component';
 // import { CursosComponent } from './cursos/cursos.component';
@@ -27,10 +29,12 @@ import { LoginComponent } from './login/login.component';
     BrowserModule,
     //CursosModule,
     //AlunosModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [
   //  CursosService
+  AuthService,
   ],
   bootstrap: [AppComponent]
 })
