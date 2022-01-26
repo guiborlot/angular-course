@@ -21,7 +21,7 @@
             <div class="row p-2">
                 <div class="flex-column col-sm-3">
                     <label for="CEP">CEP</label>
-                    <input type="text" class="form-control" id="cep" [ngClass]="aplicaInvalidErro('cep')" formControlName="cep">
+                    <input type="text" class="form-control" id="cep" [ngClass]="aplicaInvalidErro('cep')" formControlName="cep" (blur)="consultaCEP()">
                 </div>
                 <div class="flex-column col-sm-3">
                     <label for="numero">Numero</label>
