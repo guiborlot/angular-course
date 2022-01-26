@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-data-form',
@@ -31,7 +32,15 @@ export class DataFormComponent implements OnInit {
 
   onSubmit(){
     this.http.post('https://httpbin.org/post', JSON.stringify(this.formulario.value))
-    .subscribe(dados => console.log(dados));
+    .subscribe({
+      next: (res) => console.log(res),
+      error: (e) => alert('erro'),
+      complete: () => this.formulario.reset()
+    });
+  }
+
+  resetar(){
+    this.formulario.reset();
   }
 
 }
