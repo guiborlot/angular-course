@@ -1,24 +1,15 @@
 <form #f="ngForm" (ngSubmit)="onSubmit(f)">
     <div class="form-group">
         <div class="flex-column p-2">
-            <div class="d-flex flex-row">
-                <label for="nome">Nome</label>
-            </div>
-
-            <div class="d-flex flex-row">
-                <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome"
-                    [ngModel]="usuario.nome" required #nome="ngModel" [class.is-invalid]="!nome.valid && nome.touched">
-            </div>
-            <div *ngIf="nome.touched && !nome.valid" class="d-flex flex-row"
-                [class.invalid-feedback]="!nome.valid && nome.touched">
+            <label for="nome">Nome</label>
+            <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome" [ngModel]="usuario.nome"
+                required #nome="ngModel" [ngClass]="aplicaInvalidErro(nome)">
+            <div *ngIf="verificaValidTouched(nome)" class="d-flex flex-row"
+            [ngClass]="aplicaFeedbackErro(nome)">
                 Nome obrigatório.
             </div>
         </div>
     </div>
-
-    <!-- <div *ngIf="!nome.valid && nome.touched" class="alert alert-danger" role="alert">
-        Nome é obrigatório
-    </div> -->
 
     <div class="form-group">
         <div class="flex-column p-2">
@@ -28,10 +19,9 @@
             <div class="d-flex flex-row">
                 <input type="email" class="form-control" id="email" placeholder="email@email.com" name="email"
                     [ngModel]="usuario.email" required email #email="ngModel"
-                    [class.is-invalid]="!email.valid && email.touched">
+                    [ngClass]="aplicaInvalidErro(email)">
             </div>
-            <div *ngIf="email.touched && !email.valid" [class.invalid-feedback]="!email.valid && email.touched"
-                class="d-flex flex-row">
+            <div *ngIf="email.touched && !email.valid" [ngClass]="aplicaFeedbackErro(email)" class="d-flex flex-row">
                 Email obrigatório.
             </div>
         </div>
@@ -42,18 +32,18 @@
             <div class="flex-column col-sm-3">
                 <label for="CEP">CEP</label>
                 <input type="text" class="form-control" id="cep" name="cep" [ngModel]="usuario.cep" required
-                    #cep="ngModel" [class.is-invalid]="!cep.valid && cep.touched">
+                    #cep="ngModel" [ngClass]="aplicaInvalidErro(cep)">
                 <div *ngIf="cep.touched && !cep.valid" class="d-flex flex-row"
-                    [class.invalid-feedback]="!cep.valid && cep.touched">
+                [ngClass]="aplicaFeedbackErro(cep)">
                     CEP obrigatório.
                 </div>
             </div>
             <div class="flex-column col-sm-3">
                 <label for="numero">Numero</label>
                 <input type="number" class="form-control" id="numero" name="numero" [ngModel]="usuario.numero" required
-                    #numero="ngModel" [class.is-invalid]="!numero.valid && numero.touched">
+                    #numero="ngModel" [ngClass]="aplicaInvalidErro(numero)">
                 <div *ngIf="numero.touched && !numero.valid" class="d-flex flex-row"
-                    [class.invalid-feedback]="!numero.valid && numero.touched">
+                [ngClass]="aplicaFeedbackErro(numero)">
                     Numero obrigatório.
                 </div>
             </div>
@@ -61,7 +51,7 @@
                 <label for="complemento">Complemento</label>
                 <input type="text" class="form-control" id="complemento" name="complemento"
                     [ngModel]="usuario.complemento" #complemento="ngModel"
-                    [class.is-invalid]="!complemento.valid && complemento.touched">
+                    [ngClass]="aplicaInvalidErro(complemento)">
             </div>
         </div>
     </div>
@@ -70,11 +60,7 @@
         <div class="flex-row p-2">
             <label for="rua">Rua</label>
             <input type="text" class="form-control" id="rua" name="rua" [ngModel]="usuario.rua" required #rua="ngModel"
-                [class.is-invalid]="!rua.valid && rua.touched" readonly>
-            <div *ngIf="rua.touched && !rua.valid" class="d-flex flex-row"
-                [class.invalid-feedback]="!rua.valid && rua.touched">
-                Rua obrigatório.
-            </div>
+            [ngClass]="aplicaInvalidErro(rua)" readonly>
         </div>
     </div>
 
@@ -83,29 +69,15 @@
             <div class="flex-column col-sm-5">
                 <label for="bairro">Bairro</label>
                 <input type="text" class="form-control" id="bairro" name="bairro" [ngModel]="usuario.bairro" required
-                    #bairro="ngModel" [class.is-invalid]="!bairro.valid && bairro.touched" readonly>
-                <div *ngIf="bairro.touched && !bairro.valid" class="d-flex flex-row"
-                    [class.invalid-feedback]="!bairro.valid && bairro.touched">
-                    bairro obrigatório.
-                </div>
+                    #bairro="ngModel" [ngClass]="aplicaInvalidErro(bairro)" readonly>
             </div>
             <div class="flex-column col-sm-4">
                 <label for="cidade">Cidade</label>
-                <input type="text" class="form-control" id="cidade" name="cidade" [ngModel]="usuario.cidade" required
-                    #cidade="ngModel" [class.is-invalid]="!cidade.valid && cidade.touched" readonly>
-                <div *ngIf="cidade.touched && !cidade.valid" class="d-flex flex-row"
-                    [class.invalid-feedback]="!cidade.valid && cidade.touched">
-                    cidade obrigatório.
-                </div>
+                <input type="text" class="form-control" id="cidade" name="cidade" [ngModel]="usuario.cidade" required #cidade="ngModel" [ngClass]="aplicaInvalidErro(cidade)" readonly>
             </div>
             <div class="flex-column col-sm-3">
                 <label for="estado">Estado</label>
-                <input type="text" class="form-control" id="estado" name="estado" [ngModel]="usuario.estado" required
-                    #estado="ngModel" [class.is-invalid]="!estado.valid && estado.touched" readonly>
-                <div *ngIf="estado.touched && !estado.valid" class="d-flex flex-row"
-                    [class.invalid-feedback]="!estado.valid && estado.touched">
-                    estado obrigatório.
-                </div>
+                <input type="text" class="form-control" id="estado" name="estado" [ngModel]="usuario.estado" required #estado="ngModel" [ngClass]="aplicaInvalidErro(estado)" readonly>
             </div>
         </div>
     </div>
