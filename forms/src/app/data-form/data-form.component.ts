@@ -26,28 +26,35 @@ export class DataFormComponent implements OnInit {
 
     this.formulario = this.formBuilder.group({
       nome: [null, Validators.required],
-      email: [null, [Validators.required, Validators.email]]
+      email: [null, [Validators.required, Validators.email]],
+      cep: [null, Validators.required],
+      numero: [null, Validators.required],
+      complemento: [null],
+      rua: [null, Validators.required],
+      bairro: [null, Validators.required],
+      cidade: [null, Validators.required],
+      estado: [null, Validators.required]
     });
   }
 
-  onSubmit(){
+  onSubmit() {
     this.http.post('https://httpbin.org/post', JSON.stringify(this.formulario.value))
-    .subscribe({
-      next: (res) => console.log(res),
-      error: (e) => alert('erro'),
-      complete: () => this.formulario.reset()
-    });
+      .subscribe({
+        next: (res) => console.log(res),
+        error: (e) => alert('erro'),
+        complete: () => this.formulario.reset()
+      });
   }
 
-  resetar(){
+  resetar() {
     this.formulario.reset();
   }
 
-  verificaValidTouched(campo: any) {
+  verificaValidTouched(campo: string) {
     return !this.formulario.get(campo)?.valid && this.formulario.get(campo)?.touched;
   }
 
-  aplicaInvalidErro(campo: any) {
+  aplicaInvalidErro(campo: string) {
     return {
       'is-invalid': this.verificaValidTouched(campo)
     };
