@@ -43,4 +43,14 @@ export class DataFormComponent implements OnInit {
     this.formulario.reset();
   }
 
+  verificaValidTouched(campo: any) {
+    return !this.formulario.get(campo)?.valid && this.formulario.get(campo)?.touched;
+  }
+
+  aplicaInvalidErro(campo: any) {
+    return {
+      'is-invalid': this.verificaValidTouched(campo)
+    };
+  }
+
 }

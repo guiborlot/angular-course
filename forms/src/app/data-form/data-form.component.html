@@ -2,7 +2,7 @@
     <div class="form-group">
         <div class="flex-column p-2">
             <label for="nome">Nome</label>
-            <input type="text" class="form-control" id="nome" formControlName="nome">
+            <input type="text" class="form-control" id="nome" formControlName="nome" [ngClass]="aplicaInvalidErro('nome')">
         </div>
     </div>
 
@@ -12,7 +12,7 @@
                 <label for="email">Email</label>
             </div>
             <div class="d-flex flex-row">
-                <input type="email" class="form-control" id="email" placeholder="email@email.com" formControlName="email">
+                <input type="email" class="form-control" id="email" placeholder="email@email.com" formControlName="email" [ngClass]="aplicaInvalidErro('email')">
             </div>
         </div>
     </div>
