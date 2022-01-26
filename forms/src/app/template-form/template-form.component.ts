@@ -12,7 +12,11 @@ export class TemplateFormComponent implements OnInit {
     email: null,
     cep: null,
     numero: null,
-    complemento: null
+    complemento: null,
+    rua: null,
+    bairro: null,
+    cidade: null,
+    estado: null
   }
 
   onSubmit(form: any){
