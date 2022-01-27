@@ -53,7 +53,9 @@
                 </div>
                 <div class="flex-column col-sm-3">
                     <label for="estado">Estado</label>
-                    <input type="text" class="form-control" id="estado" [ngClass]="aplicaInvalidErro('endereco.estado')" formControlName="estado">
+                    <select class="form-control" id="estado" [ngClass]="aplicaInvalidErro('endereco.estado')" formControlName="estado">
+                        <option *ngFor="let estado of estados | async" [value]="estado.sigla">{{ estado.nome }}</option>
+                    </select>
                 </div>
             </div>
         </div>
