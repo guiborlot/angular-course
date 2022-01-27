@@ -21,15 +21,15 @@
             <div class="row p-2">
                 <div class="flex-column col-sm-3">
                     <label for="CEP">CEP</label>
-                    <input type="text" class="form-control" id="cep" [ngClass]="aplicaInvalidErro('cep')" formControlName="cep" (blur)="consultaCEP()">
+                    <input type="text" class="form-control" id="cep" formControlName="cep" [ngClass]="aplicaInvalidErro('endereco.cep')" (blur)="consultaCEP()">
                 </div>
                 <div class="flex-column col-sm-3">
                     <label for="numero">Numero</label>
-                    <input type="number" class="form-control" id="numero" [ngClass]="aplicaInvalidErro('numero')" formControlName="numero">
+                    <input type="number" class="form-control" id="numero" [ngClass]="aplicaInvalidErro('endereco.numero')" formControlName="numero">
                 </div>
                 <div class="flex-column col-sm-6">
                     <label for="complemento">Complemento</label>
-                    <input type="text" class="form-control" id="complemento" [ngClass]="aplicaInvalidErro('complemento')" formControlName="complemento">
+                    <input type="text" class="form-control" id="complemento" [ngClass]="aplicaInvalidErro('endereco.complemento')" formControlName="complemento">
                 </div>
             </div>
         </div>
@@ -37,7 +37,7 @@
         <div class="from-group">
             <div class="flex-row p-2">
                 <label for="rua">Rua</label>
-                <input type="text" class="form-control" id="rua" [ngClass]="aplicaInvalidErro('rua')" formControlName="rua">
+                <input type="text" class="form-control" id="rua" [ngClass]="aplicaInvalidErro('endereco.rua')" formControlName="rua">
             </div>
         </div>
     
@@ -45,15 +45,15 @@
             <div class="row p-2">
                 <div class="flex-column col-sm-5">
                     <label for="bairro">Bairro</label>
-                    <input type="text" class="form-control" id="bairro" [ngClass]="aplicaInvalidErro('bairro')" formControlName="bairro">
+                    <input type="text" class="form-control" id="bairro" [ngClass]="aplicaInvalidErro('endereco.bairro')" formControlName="bairro">
                 </div>
                 <div class="flex-column col-sm-4">
                     <label for="cidade">Cidade</label>
-                    <input type="text" class="form-control" id="cidade" [ngClass]="aplicaInvalidErro('cidade')" formControlName="cidade">
+                    <input type="text" class="form-control" id="cidade" [ngClass]="aplicaInvalidErro('endereco.cidade')" formControlName="cidade">
                 </div>
                 <div class="flex-column col-sm-3">
                     <label for="estado">Estado</label>
-                    <input type="text" class="form-control" id="estado" [ngClass]="aplicaInvalidErro('estado')" formControlName="estado">
+                    <input type="text" class="form-control" id="estado" [ngClass]="aplicaInvalidErro('endereco.estado')" formControlName="estado">
                 </div>
             </div>
         </div>

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { map } from 'rxjs';
+import { map, of } from 'rxjs';
 
 @Component({
   selector: 'app-data-form',
@@ -41,12 +41,30 @@ export class DataFormComponent implements OnInit {
   }
 
   onSubmit() {
-    this.http.post('https://httpbin.org/post', JSON.stringify(this.formulario.value))
-      .subscribe({
-        next: (res) => console.log(res),
-        error: (e) => alert('erro'),
-        complete: () => this.formulario.reset()
-      });
+
+    if(this.formulario.valid){
+      this.http.post('https://httpbin.org/post', JSON.stringify(this.formulario.value))
+        .subscribe({
+          next: (res) => console.log(res),
+          error: (e) => alert('erro'),
+          complete: () => this.formulario.reset()
+        });
+    } else {
+      this.verificaValidacoesForm(this.formulario);
+    }
+
+  }
+
+  verificaValidacoesForm(formGroup: FormGroup){
+    Object.keys(formGroup.controls).forEach(campo => {
+      console.log(campo)
+      const controle = formGroup.get(campo);
+      controle?.markAsDirty();
+      if(controle instanceof FormGroup){
+        console.log(controle);
+        this.verificaValidacoesForm(controle);
+      }
+    })
   }
 
   resetar() {
@@ -54,7 +72,7 @@ export class DataFormComponent implements OnInit {
   }
 
   verificaValidTouched(campo: string) {
-    return !this.formulario.get(campo)?.valid && this.formulario.get(campo)?.touched;
+    return !this.formulario.get(campo)?.valid && (this.formulario.get(campo)?.touched || this.formulario.get(campo)?.dirty);
   }
 
   aplicaInvalidErro(campo: string) {
