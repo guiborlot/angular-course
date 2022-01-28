@@ -56,7 +56,7 @@ export class DataFormComponent implements OnInit {
       email: [null, [Validators.required, Validators.email]],
 
       endereco: this.formBuilder.group({
-        cep: [null, Validators.required],
+        cep: [null, [Validators.required, FormValidation.cepValidator]],
         numero: [null, Validators.required],
         complemento: [null],
         rua: [null, Validators.required],
@@ -133,7 +133,7 @@ export class DataFormComponent implements OnInit {
 
   consultaCEP() {
 
-    let cep = this.formulario.get('endereco.cep')?.value;
+    let cep = this.formulario.get('endereco.cep')?.value;    
 
     if (cep != null && cep !== ''){
       this.cepService.consultaCEP(cep)?.subscribe(dados => this.populaDadosForm(dados));
