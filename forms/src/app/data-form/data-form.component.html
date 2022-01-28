@@ -4,6 +4,7 @@
             <label for="nome">Nome</label>
             <input type="text" class="form-control" id="nome" formControlName="nome"
                 [ngClass]="aplicaInvalidErro('nome')">
+                <app-error-msg [control]="formulario.get('nome')" label="Nome"></app-error-msg>
         </div>
     </div>
 
