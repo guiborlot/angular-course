@@ -2,7 +2,8 @@
     <div class="form-group">
         <div class="flex-column p-2">
             <label for="nome">Nome</label>
-            <input type="text" class="form-control" id="nome" formControlName="nome" [ngClass]="aplicaInvalidErro('nome')">
+            <input type="text" class="form-control" id="nome" formControlName="nome"
+                [ngClass]="aplicaInvalidErro('nome')">
         </div>
     </div>
 
@@ -12,7 +13,8 @@
                 <label for="email">Email</label>
             </div>
             <div class="d-flex flex-row">
-                <input type="email" class="form-control" id="email" placeholder="email@email.com" formControlName="email" [ngClass]="aplicaInvalidErro('email')">
+                <input type="email" class="form-control" id="email" placeholder="email@email.com"
+                    formControlName="email" [ngClass]="aplicaInvalidErro('email')">
             </div>
         </div>
     </div>
@@ -21,39 +23,46 @@
             <div class="row p-2">
                 <div class="flex-column col-sm-3">
                     <label for="CEP">CEP</label>
-                    <input type="text" class="form-control" id="cep" formControlName="cep" [ngClass]="aplicaInvalidErro('endereco.cep')" (blur)="consultaCEP()">
+                    <input type="text" class="form-control" id="cep" formControlName="cep"
+                        [ngClass]="aplicaInvalidErro('endereco.cep')" (blur)="consultaCEP()">
                 </div>
                 <div class="flex-column col-sm-3">
                     <label for="numero">Numero</label>
-                    <input type="number" class="form-control" id="numero" [ngClass]="aplicaInvalidErro('endereco.numero')" formControlName="numero">
+                    <input type="number" class="form-control" id="numero"
+                        [ngClass]="aplicaInvalidErro('endereco.numero')" formControlName="numero">
                 </div>
                 <div class="flex-column col-sm-6">
                     <label for="complemento">Complemento</label>
-                    <input type="text" class="form-control" id="complemento" [ngClass]="aplicaInvalidErro('endereco.complemento')" formControlName="complemento">
+                    <input type="text" class="form-control" id="complemento"
+                        [ngClass]="aplicaInvalidErro('endereco.complemento')" formControlName="complemento">
                 </div>
             </div>
         </div>
-    
+
         <div class="from-group">
             <div class="flex-row p-2">
                 <label for="rua">Rua</label>
-                <input type="text" class="form-control" id="rua" [ngClass]="aplicaInvalidErro('endereco.rua')" formControlName="rua">
+                <input type="text" class="form-control" id="rua" [ngClass]="aplicaInvalidErro('endereco.rua')"
+                    formControlName="rua">
             </div>
         </div>
-    
+
         <div class="form-group">
             <div class="row p-2">
                 <div class="flex-column col-sm-5">
                     <label for="bairro">Bairro</label>
-                    <input type="text" class="form-control" id="bairro" [ngClass]="aplicaInvalidErro('endereco.bairro')" formControlName="bairro">
+                    <input type="text" class="form-control" id="bairro" [ngClass]="aplicaInvalidErro('endereco.bairro')"
+                        formControlName="bairro">
                 </div>
                 <div class="flex-column col-sm-4">
                     <label for="cidade">Cidade</label>
-                    <input type="text" class="form-control" id="cidade" [ngClass]="aplicaInvalidErro('endereco.cidade')" formControlName="cidade">
+                    <input type="text" class="form-control" id="cidade" [ngClass]="aplicaInvalidErro('endereco.cidade')"
+                        formControlName="cidade">
                 </div>
                 <div class="flex-column col-sm-3">
                     <label for="estado">Estado</label>
-                    <select class="form-control" id="estado" [ngClass]="aplicaInvalidErro('endereco.estado')" formControlName="estado">
+                    <select class="form-control" id="estado" [ngClass]="aplicaInvalidErro('endereco.estado')"
+                        formControlName="estado">
                         <option *ngFor="let estado of estados | async" [value]="estado.sigla">{{ estado.nome }}</option>
                     </select>
                 </div>
@@ -65,26 +74,45 @@
     <div class="form-group row p-2">
         <div class="col-sm-3">
             <label for="cargo">cargo</label>
-            <select class="form-control" id="cargo" [ngClass]="aplicaInvalidErro('cargo')" formControlName="cargo" [compareWith]="compararCargos">
+            <select class="form-control" id="cargo" [ngClass]="aplicaInvalidErro('cargo')" formControlName="cargo"
+                [compareWith]="compararCargos">
                 <option *ngFor="let cargo of cargos" [ngValue]="cargo">{{ cargo.desc }}</option>
             </select>
         </div>
 
         <div class="col-sm-2">
             <label for="tecnologias">tecnologia</label>
-            <select multiple class="form-control" id="tecnologias" [ngClass]="aplicaInvalidErro('tecnologias')" formControlName="tecnologias" [compareWith]="comparartecnologias">
-                <option *ngFor="let tecnologia of tecnologias" [ngValue]="tecnologia.nome">{{ tecnologia.desc }}</option>
+            <select multiple class="form-control" id="tecnologias" [ngClass]="aplicaInvalidErro('tecnologias')"
+                formControlName="tecnologias" [compareWith]="comparartecnologias">
+                <option *ngFor="let tecnologia of tecnologias" [ngValue]="tecnologia.nome">{{ tecnologia.desc }}
+                </option>
             </select>
         </div>
 
-        <div class="flex-column col-sm-5">
-            <label class="p-5" for="newsletter">Newsletter:</label>
-            <div class="form-check form-check-inline" *ngFor="let item of newsletterOp">
-                <input class="form-check-input" type="radio" formControlName="newsletter" id="inlineRadio1" [value]="item.valor">
+        <div class="flex-column col-sm-4">
+            <label for="newsletter">Newsletter</label>
+            <br>
+            <div class="form-check form-check-inline p-3" *ngFor="let item of newsletterOp">
+                <input class="form-check-input" type="radio" formControlName="newsletter" id="inlineRadio1"
+                    [value]="item.valor">
                 <label class="form-check-label" for="inlineRadio1">{{ item.desc }}</label>
-              </div>
+            </div>
+        </div>
+
+        <div class="col-md-2">
+            <div class="checkbox">
+                <div class="form-check">
+                    <input class="form-check-input" [ngClass]="aplicaInvalidErro('termos')" type="checkbox" id="flexCheckDefault" formControlName="termos">
+                    <label class="form-check-label" for="flexCheckDefault" [ngClass]="aplicaInvalidErro('termos')">
+                        Aceito os termos.
+                    </label>
+                </div>
+            </div>
         </div>
     </div>
+
+
+    
 
     <br>
 
