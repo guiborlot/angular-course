@@ -18,6 +18,19 @@
             </div>
         </div>
     </div>
+
+    <div class="form-group">
+        <div class="flex-column p-2">
+            <div class="d-flex flex-row">
+                <label for="confirmarEmail">Confirmar Email</label>
+            </div>
+            <div class="d-flex flex-row">
+                <input type="email" class="form-control" id="email" placeholder="email@email.com"
+                    formControlName="confirmarEmail" [ngClass]="aplicaInvalidErro('confirmarEmail')">
+            </div>
+        </div>
+    </div>
+
     <div formGroupName="endereco">
         <div class="form-group">
             <div class="row p-2">
