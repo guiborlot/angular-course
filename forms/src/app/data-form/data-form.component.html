@@ -62,19 +62,27 @@
     </div>
     <br>
 
-    <div class="form-group">
-        <div class="flex-column col-sm-3">
+    <div class="form-group row p-2">
+        <div class="col-sm-3">
             <label for="cargo">cargo</label>
             <select class="form-control" id="cargo" [ngClass]="aplicaInvalidErro('cargo')" formControlName="cargo" [compareWith]="compararCargos">
                 <option *ngFor="let cargo of cargos" [ngValue]="cargo">{{ cargo.desc }}</option>
             </select>
         </div>
 
-        <div class="flex-column col-sm-3">
+        <div class="col-sm-2">
             <label for="tecnologias">tecnologia</label>
             <select multiple class="form-control" id="tecnologias" [ngClass]="aplicaInvalidErro('tecnologias')" formControlName="tecnologias" [compareWith]="comparartecnologias">
                 <option *ngFor="let tecnologia of tecnologias" [ngValue]="tecnologia.nome">{{ tecnologia.desc }}</option>
             </select>
+        </div>
+
+        <div class="flex-column col-sm-5">
+            <label class="p-5" for="newsletter">Newsletter:</label>
+            <div class="form-check form-check-inline" *ngFor="let item of newsletterOp">
+                <input class="form-check-input" type="radio" formControlName="newsletter" id="inlineRadio1" [value]="item.valor">
+                <label class="form-check-label" for="inlineRadio1">{{ item.desc }}</label>
+              </div>
         </div>
     </div>
 
