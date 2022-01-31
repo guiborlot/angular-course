@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CursosService } from '../cursos.service';
 import { Curso } from '../curso';
 import { Observable, empty, of, Subject, EMPTY } from 'rxjs';
-import { catchError, switchMap } from 'rxjs/operators';
+import { catchError, delay, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-cursos-lista',
@@ -31,6 +31,7 @@ export class CursosListaComponent implements OnInit {
        // map(),
        // tap(),
        // switchMap(),
+       delay(2000),
        catchError(error => {
          console.error(error);
          this.error$.next(true);
