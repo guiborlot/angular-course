@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { distinctUntilChanged, EMPTY, empty, map, Observable, switchMap, tap } from 'rxjs';
+import { BaseFormComponent } from '../shared/base-form/base-form.component';
 import { FormValidation } from '../shared/form-validation';
 import { EstadosBr } from '../shared/models/estados-br';
 import { ConsultaCepService } from '../shared/services/consulta-cep.service';
@@ -13,9 +14,10 @@ import { VerificaEmailService } from './services/verifica-email.service';
   templateUrl: './data-form.component.html',
   styleUrls: ['./data-form.component.scss']
 })
-export class DataFormComponent implements OnInit {
+export class DataFormComponent extends BaseFormComponent implements OnInit {
+  
 
-  formulario!: FormGroup;
+  //formulario!: FormGroup;
   //estados!: EstadosBr[];
   estados!: Observable<EstadosBr[]>;
   cargos!: any[];
@@ -30,9 +32,11 @@ export class DataFormComponent implements OnInit {
     private dropdownService: DropdownService,
     private cepService: ConsultaCepService,
     private verificaEmailService: VerificaEmailService
-  ) { }
+  ) {
+    super();
+   }
 
-  ngOnInit(): void {
+  override ngOnInit(): void {
 
     //this.verificaEmailService.verificarEmail('email1@email.com').subscribe();
 
@@ -92,8 +96,7 @@ export class DataFormComponent implements OnInit {
     return this.formBuilder.array(values, FormValidation.requiredMinCheckbox(1));
   }
 
-  onSubmit() {
-
+  submit() {
     let valueSubmit = Object.assign({}, this.formulario.value);
 
     valueSubmit = Object.assign(valueSubmit, {
@@ -104,44 +107,15 @@ export class DataFormComponent implements OnInit {
 
     console.log(valueSubmit);
 
-    if(this.formulario.valid){
-      this.http.post('https://httpbin.org/post', JSON.stringify(valueSubmit))
+    this.http.post('https://httpbin.org/post', JSON.stringify(valueSubmit))
         .subscribe({
           next: (res) => console.log(res),
           error: (e) => alert('erro'),
           complete: () => this.formulario.reset()
         });
-    } else {
-      this.verificaValidacoesForm(this.formulario);
-    }
-
   }
 
-  verificaValidacoesForm(formGroup: FormGroup){
-    Object.keys(formGroup.controls).forEach(campo => {
-      console.log(campo)
-      const controle = formGroup.get(campo);
-      controle?.markAsDirty();
-      if(controle instanceof FormGroup){
-        console.log(controle);
-        this.verificaValidacoesForm(controle);
-      }
-    })
-  }
-
-  resetar() {
-    this.formulario.reset();
-  }
-
-  verificaValidTouched(campo: string) {
-    return !this.formulario.get(campo)?.valid && (this.formulario.get(campo)?.touched || this.formulario.get(campo)?.dirty);
-  }
-
-  aplicaInvalidErro(campo: string) {
-    return {
-      'is-invalid': this.verificaValidTouched(campo)
-    };
-  }
+  
 
   consultaCEP() {
 

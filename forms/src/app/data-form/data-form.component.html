@@ -1,6 +1,6 @@
 <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
 
-    <app-input-field class="col-sm-12" [classeCss]="aplicaInvalidErro('nome')" id="=nome" label="Nome" [control]="formulario.get('nome')" formControlName="nome"></app-input-field>
+    <app-input-field class="flex-column p-2" [classeCss]="aplicaInvalidErro('nome')" id="=nome" label="Nome" [control]="formulario.get('nome')" formControlName="nome"></app-input-field>
 
     <!-- <div class="form-group">
         <div class="flex-column p-2">
@@ -11,7 +11,8 @@
         </div>
     </div> -->
 
-    <div class="form-group">
+    <app-input-field class="col-sm-12 p-2" [classeCss]="aplicaInvalidErro('email')" id="=email" label="Email" [control]="formulario.get('email')" formControlName="email" type="email"></app-input-field>
+    <!-- <div class="form-group">
         <div class="flex-column p-2">
             <div class="d-flex flex-row">
                 <label for="email">Email</label>
@@ -21,9 +22,10 @@
                     formControlName="email" [ngClass]="aplicaInvalidErro('email')">
             </div>
         </div>
-    </div>
+    </div> -->
 
-    <div class="form-group">
+    <app-input-field class="col-sm-12 p-2" [classeCss]="aplicaInvalidErro('confirmarEmail')" id="=email" label="Confirmar Email" [control]="formulario.get('email')" formControlName="confirmarEmail" type="email"></app-input-field>
+    <!-- <div class="form-group">
         <div class="flex-column p-2">
             <div class="d-flex flex-row">
                 <label for="confirmarEmail">Confirmar Email</label>
@@ -33,22 +35,22 @@
                     formControlName="confirmarEmail" [ngClass]="aplicaInvalidErro('confirmarEmail')">
             </div>
         </div>
-    </div>
+    </div> -->
 
     <div formGroupName="endereco">
         <div class="form-group">
-            <div class="row p-2">
-                <div class="flex-column col-sm-3">
+            <div class="row">
+                <div class="col-sm-3 p-2">
                     <label for="CEP">CEP</label>
                     <input type="text" class="form-control" id="cep" formControlName="cep"
                         [ngClass]="aplicaInvalidErro('endereco.cep')">
                 </div>
-                <div class="flex-column col-sm-3">
+                <div class="col-sm-3 p-2">
                     <label for="numero">Numero</label>
                     <input type="number" class="form-control" id="numero"
                         [ngClass]="aplicaInvalidErro('endereco.numero')" formControlName="numero">
                 </div>
-                <div class="flex-column col-sm-6">
+                <div class="col-sm-6 p-2">
                     <label for="complemento">Complemento</label>
                     <input type="text" class="form-control" id="complemento"
                         [ngClass]="aplicaInvalidErro('endereco.complemento')" formControlName="complemento">
@@ -57,7 +59,7 @@
         </div>
 
         <div class="from-group">
-            <div class="flex-row p-2">
+            <div class="row p-2">
                 <label for="rua">Rua</label>
                 <input type="text" class="form-control" id="rua" [ngClass]="aplicaInvalidErro('endereco.rua')"
                     formControlName="rua">
@@ -65,18 +67,18 @@
         </div>
 
         <div class="form-group">
-            <div class="row p-2">
-                <div class="flex-column col-sm-5">
+            <div class="row">
+                <div class="col-sm-5 p-2">
                     <label for="bairro">Bairro</label>
                     <input type="text" class="form-control" id="bairro" [ngClass]="aplicaInvalidErro('endereco.bairro')"
                         formControlName="bairro">
                 </div>
-                <div class="flex-column col-sm-4">
+                <div class="col-sm-4 p-2">
                     <label for="cidade">Cidade</label>
                     <input type="text" class="form-control" id="cidade" [ngClass]="aplicaInvalidErro('endereco.cidade')"
                         formControlName="cidade">
                 </div>
-                <div class="flex-column col-sm-3">
+                <div class="col-sm-3 p-2">
                     <label for="estado">Estado</label>
                     <select class="form-control" id="estado" [ngClass]="aplicaInvalidErro('endereco.estado')"
                         formControlName="estado">
@@ -88,8 +90,8 @@
     </div>
     <br>
 
-    <div class="form-group row p-2">
-        <div class="col-sm-2">
+    <div class="form-group row">
+        <div class="col-sm-2 p-2">
             <label for="cargo">cargo</label>
             <select class="form-control" id="cargo" [ngClass]="aplicaInvalidErro('cargo')" formControlName="cargo"
                 [compareWith]="compararCargos">
@@ -97,7 +99,7 @@
             </select>
         </div>
 
-        <div class="col-sm-2">
+        <div class="col-sm-2 p-2">
             <label for="tecnologias">tecnologia</label>
             <select multiple class="form-control" id="tecnologias" [ngClass]="aplicaInvalidErro('tecnologias')"
                 formControlName="tecnologias" [compareWith]="comparartecnologias">
@@ -106,7 +108,7 @@
             </select>
         </div>
 
-        <div class="flex-column col-sm-3">
+        <div class="flex-column col-sm-3 p-2">
             <label for="newsletter">Newsletter</label>
             <br>
             <div class="form-check form-check-inline p-3" *ngFor="let item of newsletterOp">
@@ -116,7 +118,7 @@
             </div>
         </div>
 
-        <div class="col-md-2">
+        <div class="col-md-2 p-2">
             <div class="checkbox">
                 <div class="form-check">
                     <input class="form-check-input" [ngClass]="aplicaInvalidErro('termos')" type="checkbox" id="flexCheckDefault" formControlName="termos">

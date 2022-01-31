@@ -13,7 +13,7 @@ import { FormsModule } from '@angular/forms';
   declarations: [
     FormDebugComponent,
     ErrorMsgComponent,
-    InputFieldComponent,
+    InputFieldComponent
   ],
   imports: [
     CommonModule,
