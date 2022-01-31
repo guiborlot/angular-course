@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { map, Observable } from 'rxjs';
+import { distinctUntilChanged, EMPTY, empty, map, Observable, switchMap, tap } from 'rxjs';
 import { FormValidation } from '../shared/form-validation';
 import { EstadosBr } from '../shared/models/estados-br';
 import { ConsultaCepService } from '../shared/services/consulta-cep.service';
@@ -76,6 +76,13 @@ export class DataFormComponent implements OnInit {
       termos: [null, Validators.requiredTrue],
       frameworks: this.buildFrameworks()
     });
+
+    this.formulario.get('endereco.cep')?.statusChanges
+    .pipe(
+      distinctUntilChanged(),
+      tap(value => console.log('status CEP:', value)),
+      switchMap(status => status === 'VALID' ? this.cepService.consultaCEP(this.formulario.get('endereco.cep')?.value) : EMPTY))
+      .subscribe(dados => dados ? this.populaDadosForm(dados) : {});
   }
 
   buildFrameworks() {
@@ -138,20 +145,10 @@ export class DataFormComponent implements OnInit {
 
   consultaCEP() {
 
-    let cep = this.formulario.get('endereco.cep')?.value;    
+    const cep = this.formulario.get('endereco.cep')?.value;    
 
     if (cep != null && cep !== ''){
       this.cepService.consultaCEP(cep)?.subscribe(dados => this.populaDadosForm(dados));
-    }
-    cep = cep.replace(/\D/g, '');
-    if (cep != "") {
-      let validacep = /^[0-9]{8}$/;
-      if (validacep.test(cep)) {
-
-        this.resetaDadosForm();
-
-        this.http.get(`//viacep.com.br/ws/${cep}/json`).subscribe(res => this.populaDadosForm(res));
-      }
     }
   }
 
