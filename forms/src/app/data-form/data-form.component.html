@@ -75,14 +75,16 @@
                 </div>
                 <div class="col-sm-4 p-2">
                     <label for="cidade">Cidade</label>
-                    <input type="text" class="form-control" id="cidade" [ngClass]="aplicaInvalidErro('endereco.cidade')"
+                    <select class="form-control" id="cidade" [ngClass]="aplicaInvalidErro('endereco.cidade')"
                         formControlName="cidade">
+                        <option *ngFor="let cidade of cidades" [value]="cidade.nome">{{ cidade.nome }}</option>
+                    </select>
                 </div>
                 <div class="col-sm-3 p-2">
                     <label for="estado">Estado</label>
                     <select class="form-control" id="estado" [ngClass]="aplicaInvalidErro('endereco.estado')"
                         formControlName="estado">
-                        <option *ngFor="let estado of estados | async" [value]="estado.sigla">{{ estado.nome }}</option>
+                        <option *ngFor="let estado of estados" [value]="estado.sigla">{{ estado.nome }}</option>
                     </select>
                 </div>
             </div>
