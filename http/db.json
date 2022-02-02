@@ -29,24 +29,12 @@
       "nome": "Elixir"
     },
     {
-      "nome": "dada",
-      "id": 9
-    },
-    {
-      "nome": "Material 5",
-      "id": 12
-    },
-    {
       "id": 13,
       "nome": "Scala"
     },
     {
       "id": 14,
       "nome": "Material"
-    },
-    {
-      "id": 15,
-      "nome": "Spring boot 2"
     }
   ]
 }
