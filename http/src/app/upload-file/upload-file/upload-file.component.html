@@ -19,4 +19,13 @@
             Enviar
         </button>
     </div>
+    <div class="progress" style="margin-top: 20px;">
+        <div
+            class="progress-bar"
+            role="progressbar"
+            [style.width]="progress + '%'"
+        >
+            {{ progress }}%
+        </div>
+    </div>
 </div>
