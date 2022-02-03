@@ -9,5 +9,14 @@
             (change)="onChange($event)"
             multiple
         />
+        <button
+            class="btn btn-outline-secondary"
+            type="button"
+            id="inputGroupFileAddon04"
+            (click)="onUpload()"
+            [disabled]="!files"
+        >
+            Enviar
+        </button>
     </div>
 </div>
