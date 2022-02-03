@@ -59,4 +59,9 @@ export class UploadFileComponent implements OnInit {
                 // });
         }
     }
+    onDownload(){
+        this.service.download(environment.BASE_URL + '/download').subscribe((res: any) => {
+           this.service.handleFile(res, 'Termo-de-Compromisso.docx')
+        });
+    }
 }

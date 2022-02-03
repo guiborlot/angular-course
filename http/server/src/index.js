@@ -21,6 +21,10 @@ app.post('/upload', multipartMiddleware, (req, res) => {
     res.json({message: files});
 });
 
+app.get('/download', (req,res) => {
+    res.download('./uploads/Termo-de-Compromisso.docx')
+});
+
 app.use((err,req,res,next) => res.json({error: err.message}))
 
 app.listen(8000, () => {
